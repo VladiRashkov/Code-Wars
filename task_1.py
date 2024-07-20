@@ -6,3 +6,4 @@ def max_num(l):
     return max_num
 
 print(max_num(list(map(int, input().split(',')))))
+        
