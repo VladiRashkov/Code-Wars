@@ -1,12 +1,31 @@
-import itertools
+from math import factorial
 
 def list_position(word):
+    def count_smaller_chars(ch, suffix):
+        return sum(1 for x in suffix if x < ch)
     
-    unique_anagrams = sorted(set(''.join(p) for p in itertools.permutations(word)))
-    
-    return unique_anagrams.index(word) + 1
+    def factorial_division(n, char_counts):
+        result = factorial(n)
+        for count in char_counts.values():
+            result //= factorial(count)
+        return result
 
-print(list_position('CABB'))
+    sorted_word = ''.join(sorted(word))
+    position = 1
+    char_counts = {ch: word.count(ch) for ch in set(word)}
+
+    for i, ch in enumerate(word):
+        for smaller_char in sorted(set(word[i:])):
+            if smaller_char < ch:
+                char_counts[smaller_char] -= 1
+                position += factorial_division(len(word) - i - 1, char_counts)
+                char_counts[smaller_char] += 1
+        
+        char_counts[ch] -= 1
+
+    return position
+
+print(list_position('CABB'))  # Expected output: 10
 
 
 # Alphabetic Anagrams
