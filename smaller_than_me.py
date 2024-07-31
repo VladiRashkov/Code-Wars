@@ -3,10 +3,10 @@ def smaller(arr):
     sorted_unique_arr = sorted(set(arr))
     rank_map = {num: rank for rank, num in enumerate(sorted_unique_arr)}
     
-    # Create a list to store the counts of numbers
+   
     counts = [0] * len(arr)
     
-    # Iterate from right to left in the array
+   
     result = []
     for num in reversed(arr):
         rank = rank_map[num]
