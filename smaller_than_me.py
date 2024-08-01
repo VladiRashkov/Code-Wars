@@ -16,4 +16,5 @@ def smaller(arr):
     return result[::-1]
 
 print(smaller([5, 4, 3, 2, 1]))  
-print(smaller([1, 2, 0]))        
+  
+#1234567890
